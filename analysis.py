@@ -6,14 +6,8 @@
 # Start-date: 22/03/2022
 
 import pandas as pd
-import matplotlib.pyplot as plt
 import plotAnalysis as pa
 
-import numpy as np
-import statsmodels.api as sm
-import seaborn as sns
-sns.set()
-from sklearn.cluster import KMeans
 
 # The next comment (line 12) is to stop errors using df.loc
 # pylint: disable=no-member

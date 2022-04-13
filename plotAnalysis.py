@@ -36,8 +36,8 @@ def plotIrisGrps(df, xcol, ycol, legendTitle, title, xlabel, ylabel, fname):
 
 def doClustering(dataset, xcol, ycol, title, fname, xcolIdx, ycolIdx):
     subset = dataset.iloc[:,[xcolIdx,ycolIdx]]
-    print(subset)
-    print("~~~~~~~~~~~~~~~~~~~~~")
+    #print(subset)
+    #print("~~~~~~~~~~~~~~~~~~~~~")
     # Do Clustering
     kmeans = KMeans(3) # an unsupervised machine learning technique used to identify clusters of data objects in a dataset. 
     kmeans.fit(subset) # Computes k-means clustering
