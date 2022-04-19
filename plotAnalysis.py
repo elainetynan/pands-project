@@ -18,8 +18,11 @@ from sklearn.cluster import KMeans
 
 plotPath = './plots/'
 dataPath = './data/'
+statsPath= './summaryStats/'
 
-def plotIrisGrps(df, xcol, ycol, legendTitle, title, xlabel, ylabel, fname):
+def plotIrisGrps(df, xcol, ycol, title, fname, xlabel='', ylabel=''):
+    thePath = plotPath+'scatter/'
+    legendTitle = xcol + " by " + ycol
     # Plot 3 types of Iris - sepal dimensions
     # plt.subplots() is a function that returns a tuple containing a figure and axes object(s).
     # figsize sets the dimensions of the plot. A common size is 8x6 and looks good when I run it. 
@@ -29,12 +32,16 @@ def plotIrisGrps(df, xcol, ycol, legendTitle, title, xlabel, ylabel, fname):
         ax.scatter(x=xcol, y =ycol, data=grp, label=n)
     ax.legend(title=legendTitle)
     plt.title(title)
-    ax.set_xlabel(xlabel, fontweight ='bold')
-    ax.set_ylabel(ylabel, fontweight ='bold')
-    plt.savefig(plotPath+fname)
+    ax.set_xlabel(xcol, fontweight ='bold')
+    ax.set_ylabel(ycol, fontweight ='bold')
+    plt.savefig(thePath+fname)
     #plt.show()
 
-def doClustering(dataset, xcol, ycol, title, fname, xcolIdx, ycolIdx):
+def doClustering(dataset, xcol, ycol, xcolIdx, ycolIdx):
+    thePath = plotPath+'cluster/'
+    title = xcol + " v " + ycol + ": Clustered"
+    fname = "Cluster_" + xcol + "_" + ycol + ".png"
+
     subset = dataset.iloc[:,[xcolIdx,ycolIdx]]
     #print(subset)
     #print("~~~~~~~~~~~~~~~~~~~~~")
@@ -48,6 +55,44 @@ def doClustering(dataset, xcol, ycol, title, fname, xcolIdx, ycolIdx):
     plt.scatter(data_with_clusters[xcol],data_with_clusters[ycol],c=data_with_clusters['Clusters'],cmap='rainbow')
     plt.title(title)
     #plt.show()
-    plt.savefig(plotPath+fname)
+    plt.savefig(thePath+fname)
     
-# Next try histograms of the summary staatistics grouped by class
+# Bar Charts of summary statistics
+
+def barChartSummaryStat(df, colName):
+    thePath = plotPath+'barSummary/'+colName+"/"
+    
+    
+    minDf = df.groupby('class', as_index=False)[colName].min()
+    ax = minDf.plot.bar(x='class', y=colName, rot=0)
+    plt.title("Min of "+colName)
+    plt.savefig(thePath+colName+"min.png")
+
+    meanDf = df.groupby('class', as_index=False)[colName].mean()
+    ax = meanDf.plot.bar(x='class', y=colName, rot=0)
+    plt.title("Mean of "+colName)
+    plt.savefig(thePath+colName+"mean.png")
+    
+    maxDf = df.groupby('class', as_index=False)[colName].max()
+    ax = maxDf.plot.bar(x='class', y=colName, rot=0)
+    plt.title("Max of "+colName)
+    plt.savefig(thePath+colName+"max.png")
+    
+    stdDf = df.groupby('class', as_index=False)[colName].std()
+    ax = stdDf.plot.bar(x='class', y=colName, rot=0)
+    plt.title("Standard Deviation of "+colName)
+    plt.savefig(thePath+colName+"std.png")
+
+def generateSummaryStats(df):
+    # Get all rows for each class of Iris, then generate summary statistics & save them to csv
+    setosa = df.loc[df['class'] == 'Iris-setosa']
+    setosaStats = setosa.describe()
+    setosaStats.to_csv(statsPath+'setosaStats.csv')
+
+    versicolor = df.loc[df['class'] == 'Iris-versicolor']
+    versicolorStats = versicolor.describe()
+    versicolorStats.to_csv(statsPath+'versicolorStats.csv')
+
+    virginica = df.loc[df['class'] == 'Iris-virginica']
+    virginicaStats = virginica.describe()
+    virginicaStats.to_csv(statsPath+'virginicaStats.csv')
