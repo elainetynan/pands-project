@@ -5,9 +5,9 @@
 # Author: Elaine Tynan
 # Start-date: 22/03/2022
 
-import numpy as np
-import pandas as pd
-import statsmodels.api as sm
+#import numpy as np
+#import pandas as pd
+#import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
@@ -36,6 +36,9 @@ def plotIrisGrps(df, xcol, ycol, title, fname, xlabel='', ylabel=''):
     ax.set_ylabel(ycol, fontweight ='bold')
     plt.savefig(thePath+fname)
     #plt.show()
+    
+    # Close all plots
+    plt.close('all')
 
 def doClustering(dataset, xcol, ycol, xcolIdx, ycolIdx):
     thePath = plotPath+'cluster/'
@@ -56,6 +59,9 @@ def doClustering(dataset, xcol, ycol, xcolIdx, ycolIdx):
     plt.title(title)
     #plt.show()
     plt.savefig(thePath+fname)
+    
+    # Close all plots
+    plt.close('all')
     
 # Bar Charts of summary statistics
 
@@ -82,6 +88,9 @@ def barChartSummaryStat(df, colName):
     ax = stdDf.plot.bar(x='class', y=colName, rot=0)
     plt.title("Standard Deviation of "+colName)
     plt.savefig(thePath+colName+"std.png")
+    
+    # Close all plots
+    plt.close('all')
 
 def generateSummaryStats(df):
     # Get all rows for each class of Iris, then generate summary statistics & save them to csv
@@ -96,3 +105,31 @@ def generateSummaryStats(df):
     virginica = df.loc[df['class'] == 'Iris-virginica']
     virginicaStats = virginica.describe()
     virginicaStats.to_csv(statsPath+'virginicaStats.csv')
+
+def boxPlots(df):
+    thePath = plotPath+'boxPlots/'
+
+    # Do boxplots using seaborn for the experience of using the different package
+
+    plt.figure() # for a new plot to clear old information
+    ax = sns.boxplot(x="class", y="petal length", data=df)
+    plt.title("Petal Length")
+    plt.savefig(thePath+"boxPlotPetalLength.png")
+    
+    plt.figure()
+    ax = sns.boxplot(x="class", y="petal width", data=df)
+    plt.title("Petal Width")
+    plt.savefig(thePath+"boxPlotPetalWidth.png")
+    
+    plt.figure()
+    ax = sns.boxplot(x="class", y="sepal length", data=df)
+    plt.title("Sepal Length")
+    plt.savefig(thePath+"boxPlotSepalLength.png")
+    
+    plt.figure()
+    ax = sns.boxplot(x="class", y="sepal width", data=df)
+    plt.title("Sepal Width")
+    plt.savefig(thePath+"boxPlotSepalWidth.png")
+    
+    # Close all plots
+    plt.close('all')
