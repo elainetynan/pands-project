@@ -45,6 +45,7 @@ pa.barChartSummaryStat(df, 'petal width')
 
 # Generate Summary statistics
 pa.generateSummaryStats(df)
+# !!!! Check if this is creating the csv files (make a copy of old first)
 
 # Do boxplots
 pa.boxPlots(df)

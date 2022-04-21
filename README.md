@@ -1,4 +1,4 @@
-# pands-project
+﻿# pands-project
 Project for Programming and Scripting project.
 
 
@@ -16,6 +16,42 @@ The Iris dataset is famous as the dataset used in a paper in 1936 by R.A Fisher.
 titled 'The Use of Multiple Measurements in Taxonomic Problems' includes fifty samples of data on three different species of the Iris Flower. Each Flower had the following information recorded about it: Sepal length in cm, Sepal width in cm, Petal length in cm, petal width in cm and class, where class is either 'Iris-setosa', 'Iris-versicolor' or 'Iris-virginica'.
 One flower species is linearly separable from the other two, while the other two are not linearly separable from each other. Data can be classed as linearly separable if a line can be drawn anywhere on the plane that will have all the data objects from one dataset at one side of it and all the datasets from the other dataset at the other side.
 The data set became a typical example for statistical analysis and machine learning. The fact that the data only contains two clusters (Iris Setosa in one cluster and Iris Versicolor with Iris Virginica in the other cluster) means it is not a good example for cluster analysis but inversely is a good example of the differences between supervised and unsupervised techniques in data mining as Iris Versicolor and Iris Virginica is not separable without further species information that Fisher used. (Wikipedia, 2022)
+
+
+Analysis
+~~~~~~~~~~~~
+Based on the analysis I have concluded the below information.
+
+Scatter Graphs
+
+In the scatter graph of Sepal Length v Sepal Width it shows that the class Setosa has smaller sepal lengths but larger sepal widths than the other two class of Iris. The remaining two class of Iris are very much overlapping but in general the class Versicolor has a shorter and slightly narrower sepal than the class Virginica.
+
+The scatter graph of Petal Length v Petal Width shows that the class Setosa has shorter and narrower petals than the other two class of Iris.
+The class Versicolor is both shorter and narrower than the class Virginica, which has the longest and widest petals of all 3.
+
+The remaining four scatter graphs (Petal Length v Sepal Length, Petal Length v Sepal Width, Petal Width v Sepal Length, Petal Width v Sepal Width) all show similar patterns where Iris Setosa clearly has the shortest and narrowest sepals and petals while the other two Irises are closer in size with the Versicolor having shorter and narrower petals and sepals than Virginica.
+
+
+Cluster Plots
+
+The cluster plots again show a clear difference between Iris Setosa and the other two class of Iris. Again the Iris Setosa is smaller than the other two class of Iris is both length and width. In most cases using K-means clustering there is a clear distinction between Iris Setosa and the remaining two Iris class which makes it linearly separable from them. This is not true for Iris Versicolor and Iris Virginica.
+
+
+Box plots
+
+In all instances of the box plots (plotting the sepal length, sepal width, petal length and sepal width) it is clear that the Iris Setosa is smallest, Iris Virginica is largest and Iris versicolor is in the middle although it is closer in all dimensions to Iris Virginica than to Iris Setosa.
+
+
+Bar Charts
+
+The Bar charts for the min, max mean and standard deviation of all four measurements reinforce what the other visualisations show, again that Iris Setosa is clearly the smallest in all areas except the sepal width. the Iris Virginica is the largest with Iris Versicolor being in the middle. This is true, even for standard deviation.
+In the case of sepal width Iris Setosa is the widest with Iris Virginica being the narrowest and Iris Versicolor being in the middle.
+
+
+Summary Statistics
+
+The summary statistics is a quick look at the same information that is shown in the box plots
+
 
 
 Instructions
