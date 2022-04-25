@@ -22,6 +22,7 @@ Analysis
 ~~~~~~~~~~~~
 Based on the analysis I have concluded the below information.
 
+
 Scatter Graphs
 
 In the scatter graph of Sepal Length v Sepal Width it shows that the class Setosa has smaller sepal lengths but larger sepal widths than the other two class of Iris. The remaining two class of Iris are very much overlapping but in general the class Versicolor has a shorter and slightly narrower sepal than the class Virginica.
@@ -46,6 +47,11 @@ Bar Charts
 
 The Bar charts for the min, max mean and standard deviation of all four measurements reinforce what the other visualisations show, again that Iris Setosa is clearly the smallest in all areas except the sepal width. the Iris Virginica is the largest with Iris Versicolor being in the middle. This is true, even for standard deviation.
 In the case of sepal width Iris Setosa is the widest with Iris Virginica being the narrowest and Iris Versicolor being in the middle.
+
+
+Andrews Curve
+
+The Andrews surce show the 3 class of Iris. It show a large proportion ove overlap between Iris Virginica and Iris Versicolor. It also shows Iris Virginica having the largest values, for the most part while Iris Setosa has the smallest values for the most part, towards the end and beginning Iris Setosa has larger values which would correspond to it having wider sepals. The reason why it is larger at the start and end is because the Andrews curve is version of the radar chart which is circular in nature, we could essentially join the end of the plot with the beginning of it.
 
 
 Summary Statistics
@@ -115,6 +121,12 @@ I had been getting a warning about having more than twenty plots opened (even th
 
 
 
+25/04/2022
+~~~~~~~~~~
+Today I found an interesting data visualisation called the Andrews Plot, or in Python the andrews_curve (Yashi, 2021). This can be used to find outliers in data but more importantly in the case of the Iris-dataset, it can be used “as a technique for classifying observations into groups”, (Spencer, 2003). Spencer (2003) goes on to explain how the Andrews plot will produce similar curves for data in groups with similar patterns for grouped data. The plot created from the Iris dataset clearly shows the 3 groups and how the data differs and also overlaps.
+I also did some research on decision tress but decided not to use them. For my level of knowledge in data analyses so far, I felt it did not add any value to my analyses of the Iris Dataset.
+
+
 References
 ~~~~~~~~~~
 
@@ -125,25 +137,33 @@ Beatty, A. (2022), PROJECT: Programming and Scripting. Available at: https://lea
 
 Data Science Parichay (2021), Minimum Value in Each Group – Pandas Groupby. Available at: https://datascienceparichay.com/article/pandas-groupby-minimum/ (Accessed: 19 April 2022)
 
-Dua, D. and Graff, C. (2019). UCI Machine Learning Repository. Irvine, CA: University of California, School of Information and Computer Science. Available at: https://archive.ics.uci.edu/ml/datasets/iris (Accessed: 22 March 2022)
+Dua, D. and Graff, C. (2019). UCI Machine Learning Repository. Irvine, CA: University of California, School of Information and Computer Science. Available at: https://archive.ics.uci.edu/ml/datasets/iris
+(Accessed: 22 March 2022)
 
 Fisher R.A. (1936), The use of multiple Measurements in Taxonomic Problems. Available at: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1469-1809.1936.tb02137.x (Accessed: 12 April 2022)
 
 Hamner, B. (2017), Python Data Visualizations. Available at: https://www.kaggle.com/code/benhamner/python-data-visualizations (Accessed: 20 April 2022)
 
-Jyh-Shing Roger Jang (1996), Data Clustering and Pattern Recognition. available at http://mirlab.org/jang/books/dcpr/. (Accessed: 22 March 2022)
+Jyh-Shing Roger Jang (1996), Data Clustering and Pattern Recognition. available at http://mirlab.org/jang/books/dcpr/ (Accessed: 22 March 2022)
 
 Pranshu, (2021), K Means Clustering Simplified in Python. Available at: https://www.analyticsvidhya.com/blog/2021/04/k-means-clustering-simplified-in-python/ (Accessed: 12 April 2022)
+
+  
+Spencer N.H. (2003), Investigating Data with Andrews Plots. Social Science Computer Review. Available at: https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.608.6250&rep=rep1&type=pdf (Accessed: 25 April 2022)
+
+
+Yashi S. (2021), Analyzing Decision Tree and K-means Clustering using Iris dataset. Available at: https://www.analyticsvidhya.com/blog/2021/06/analyzing-decision-tree-and-k-means-clustering-using-iris-dataset/ (Accessed: 25 April 2022)
+  
 
 Wikipedia (2022), Iris flower data set. Available at: https://en.wikipedia.org/wiki/Iris_flower_data_set (Accessed: 12 April 2022)
 
 
 
 Other References read but not used directly in the project
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Duda, & Hart, P. E. (1973), Pattern classification and scene analysis. Wiley. Available at: https://www.cs.toronto.edu/~rgrosse/courses/csc321_2018/tutorials/tut2.pdf (Accessed: 12 April 2022)
 
-Hamner, B. Jatana, V. Swain, A (2016) Iris Species. Available at: https://www.kaggle.com/datasets/uciml/iris Accessed: (12 April 2022)
+Hamner, B. Jatana, V. Swain, A (2016) Iris Species. Available at: https://www.kaggle.com/datasets/uciml/iris (Accessed: 12 April 2022)
 
 Pedregosa et al (2011),Scikit-learn: Machine Learning in Python, K-means clustering. JMLR 12, pp. 2825-2830, 2011. Available at: https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html (Accessed: 12 April 2022)

@@ -49,3 +49,6 @@ pa.generateSummaryStats(df)
 
 # Do boxplots
 pa.boxPlots(df)
+
+# Do Andrews Plot/Curve
+pa.doAndrewsCurves(df)

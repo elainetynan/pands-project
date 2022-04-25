@@ -12,6 +12,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
 from sklearn.cluster import KMeans
+from pandas.plotting import andrews_curves
+
+# Import Library for loading & splitting data & creating Decision tree
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 
 # The next comment (line 12) is to stop errors using df.loc
 # pylint: disable=no-member
@@ -133,3 +140,8 @@ def boxPlots(df):
     
     # Close all plots
     plt.close('all')
+
+def doAndrewsCurves(df):
+    andrews_curves(df, "class")
+    plt.savefig(plotPath+"andrewsCurve.png")
+    plt.close()
