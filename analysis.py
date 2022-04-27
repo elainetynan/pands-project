@@ -36,19 +36,23 @@ pa.plotIrisGrps(df, 'petal width', 'sepal width', "Iris Data Set", "PetalWidthSe
 pa.plotIrisGrps(df, 'petal width', 'sepal length', "Iris Data Set", "PetalWidthSepalLength.png")
 pa.plotIrisGrps(df, 'petal length', 'sepal width', "Iris Data Set", "PetalLengthSepalWidth.png")
 
-
 # Do bar charts of summary statistics of each measurement
 pa.barChartSummaryStat(df, 'sepal length')
 pa.barChartSummaryStat(df, 'sepal width')
 pa.barChartSummaryStat(df, 'petal length')
 pa.barChartSummaryStat(df, 'petal width')
 
-# Generate Summary statistics
+# Generate Summary statistics in csv format
 pa.generateSummaryStats(df)
-# !!!! Check if this is creating the csv files (make a copy of old first)
 
 # Do boxplots
 pa.boxPlots(df)
 
 # Do Andrews Plot/Curve
 pa.doAndrewsCurves(df)
+
+# Do 3D plots
+pa.do3dPlots(df, 'sepal length', 'sepal width', 'petal width')
+pa.do3dPlots(df, 'petal length', 'petal width', 'sepal width')
+pa.do3dPlots(df, 'sepal length', 'sepal width', 'petal length')
+pa.do3dPlots(df, 'petal length', 'petal width', 'sepal length')

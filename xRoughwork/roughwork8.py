@@ -5,6 +5,9 @@
 # Author: Elaine Tynan
 # Start-date: 22/03/2022
 
+#import numpy as np
+#import pandas as pd
+#import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
@@ -17,16 +20,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
-# Importing plotly.express for 3D scatter graphs
-import plotly.express as px
-
 # The next comment (line 12) is to stop errors using df.loc
 # pylint: disable=no-member
 
 plotPath = './plots/'
 dataPath = './data/'
 statsPath= './summaryStats/'
-
 
 def plotIrisGrps(df, xcol, ycol, title, fname, xlabel='', ylabel=''):
     thePath = plotPath+'scatter/'
@@ -43,11 +42,13 @@ def plotIrisGrps(df, xcol, ycol, title, fname, xlabel='', ylabel=''):
     ax.set_xlabel(xcol, fontweight ='bold')
     ax.set_ylabel(ycol, fontweight ='bold')
     plt.savefig(thePath+fname)
+    #plt.show()
     
     # Close all plots
     plt.close('all')
 
-
+import matplotlib.patches as mpatches
+from matplotlib.colors import ListedColormap # Try
 def doClustering(dataset, xcol, ycol, xcolIdx, ycolIdx):
     thePath = plotPath+'cluster/'
     title = xcol + " v " + ycol + ": Clustered"
@@ -55,6 +56,9 @@ def doClustering(dataset, xcol, ycol, xcolIdx, ycolIdx):
 
     subset = dataset.iloc[:,[xcolIdx,ycolIdx]]
     
+    # Setup colours for plots
+    colors = ListedColormap(['r','b','g']) # Try
+
     # Do Clustering
     kmeans = KMeans(3) # an unsupervised machine learning technique used to identify clusters of data objects in a dataset. 
     kmeans.fit(subset) # Computes k-means clustering
@@ -62,18 +66,32 @@ def doClustering(dataset, xcol, ycol, xcolIdx, ycolIdx):
     
     data_with_clusters = subset.copy()
     data_with_clusters['Clusters'] = identified_clusters 
-    plt.scatter(data_with_clusters[xcol],data_with_clusters[ycol],c=data_with_clusters['Clusters'],cmap='rainbow')
+    #plt.scatter(data_with_clusters[xcol],data_with_clusters[ycol],c=data_with_clusters['Clusters'],cmap='rainbow')
+    plt.scatter(data_with_clusters[xcol],data_with_clusters[ycol],c=data_with_clusters['Clusters'],cmap=colors) # Try
     plt.title(title)
+    
+    # Try
+    colours = ['b','r','g']
+    i=0 # for using the colours
+    legendLst = dataset.loc[:,"class"].unique()
+    patches = []
+    for lbl in legendLst:
+        curPatch = mpatches.Patch(label = lbl, color=colours[i])
+        i += 1
+        patches.append(curPatch)
+    plt.legend(handles=patches)
+    # End try
 
     plt.savefig(thePath+fname)
     
     # Close all plots
     plt.close('all')
     
-
 # Bar Charts of summary statistics
+
 def barChartSummaryStat(df, colName):
     thePath = plotPath+'barSummary/'+colName+"/"
+    
     
     minDf = df.groupby('class', as_index=False)[colName].min()
     ax = minDf.plot.bar(x='class', y=colName, rot=0)
@@ -98,7 +116,6 @@ def barChartSummaryStat(df, colName):
     # Close all plots
     plt.close('all')
 
-
 def generateSummaryStats(df):
     # Get all rows for each class of Iris, then generate summary statistics & save them to csv
     setosa = df.loc[df['class'] == 'Iris-setosa']
@@ -113,11 +130,11 @@ def generateSummaryStats(df):
     virginicaStats = virginica.describe()
     virginicaStats.to_csv(statsPath+'virginicaStats.csv')
 
-
 def boxPlots(df):
     thePath = plotPath+'boxPlots/'
 
     # Do boxplots using seaborn for the experience of using the different package
+
     plt.figure() # for a new plot to clear old information
     ax = sns.boxplot(x="class", y="petal length", data=df)
     plt.title("Petal Length")
@@ -141,17 +158,7 @@ def boxPlots(df):
     # Close all plots
     plt.close('all')
 
-
 def doAndrewsCurves(df):
     andrews_curves(df, "class")
     plt.savefig(plotPath+"andrewsCurve.png")
     plt.close()
-
-
-
-def do3dPlots(df, xcol, ycol, zcol):
-    thePath = plotPath+'scatter3D/'
-
-    fig = px.scatter_3d(df, x=xcol, y=ycol, z=zcol, color='class', width=800, height=800)
-    fname = xcol + "_" + ycol + "_" + zcol + "_scatter3D.png"
-    fig.write_image(thePath+fname)
